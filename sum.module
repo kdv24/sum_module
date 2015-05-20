@@ -8,6 +8,12 @@ function sum_menu() {
         'access callback' => TRUE,
         'type' => MENU_NORMAL_ITEM,
     );
+    $items['success']=array(
+        'title' => 'Success',
+        'page callback' => 'sum_success',
+        'access callback'=> TRUE,
+        'type' => MENU_CALLBACK,
+    );
     return $items;
 }
 
@@ -34,4 +40,7 @@ function sum_form() {
 
 function sum_form_submit($form, &$form_state){
      $form_state['redirect']='success';
+}
+function sum_success(){
+    return 'You calculated a sum!';
 }
