@@ -39,8 +39,17 @@ function sum_form() {
 }
 
 function sum_form_submit($form, &$form_state){
-     $form_state['redirect']='success';
+    $first_number = $form_state['values']['left_number'];
+    $second_number = $form_state['values']['right_number'];
+    $sum = $first_number + $second_number;
+    $_SESSION['first_number'] = $first_number;
+    $_SESSION['second_number'] = $second_number;
+
+    $form_state['redirect']='success';
 }
 function sum_success(){
-    return 'You calculated a sum!';
+    $first_number = $_SESSION['first_number'];
+    $second_number = $_SESSION['second_number'];
+    $sum = $first_number + $second_number;
+    return 'You calculated a sum! ' . $first_number . ' + ' . $second_number . ' = ' . $sum;
 }
