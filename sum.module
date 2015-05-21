@@ -22,7 +22,7 @@ function sum_form() {
         '#title' => 'Left number',
         '#type' => 'textfield',
         '#description' => t('Please enter your starting number.'),
-        '#element_validate' => array('element_validate_number', 'element_abeer_kelly'),
+        '#element_validate' => array('element_validate_number', 'element_abeer_kelly', 'element_validate_even'),
         '#required' => TRUE,
     );
 
@@ -30,7 +30,7 @@ function sum_form() {
         '#title' => 'Right number',
         '#type' => 'textfield',
         '#description' => t('Please enter a number to add to the starting number.'),
-        '#element_validate' => array('element_validate_number', 'element_abeer_kelly'),
+        '#element_validate' => array('element_validate_number', 'element_abeer_kelly', 'element_validate_even'),
         '#required' => TRUE,
     );
 
@@ -51,11 +51,18 @@ function sum_form_submit($form, &$form_state){
 
     $form_state['redirect']='success';
 }
+
 function sum_success(){
     $first = $_SESSION['first_number'];
     $second = $_SESSION['second_number'];
     $sum = $first + $second;
     return 'You calculated a sum! ' . $first . ' + ' . $second . ' = ' . $sum;
+}
+
+function element_validate_even($element) {
+    if ($element['#value'] % 2 != 0) {
+        form_error($element, t('Number must be even.'));
+    }
 }
 
 function element_abeer_kelly($validater){
