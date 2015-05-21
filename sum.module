@@ -30,7 +30,7 @@ function sum_form() {
         '#title' => 'Right number',
         '#type' => 'textfield',
         '#description' => t('Please enter a number to add to the starting number.'),
-        '#element_validate' => array('element_validate_number', 'element_validaterange'),
+        '#element_validate' => array('element_validate_number', 'element_validate_kelly'),
         '#required' => TRUE,
     );
 
@@ -58,7 +58,7 @@ function sum_success(){
     return 'You calculated a sum! ' . $first . ' + ' . $second . ' = ' . $sum;
 }
 
-function element_validaterange($validater){
+function element_validate_kelly($validater){
     if($validater['#value'] > 50 || $validater['#value'] < -50){
         form_error($validater, t('Number must be less than 50 or greater than -50'));
     }
