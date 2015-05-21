@@ -22,7 +22,7 @@ function sum_form() {
         '#title' => 'Left number',
         '#type' => 'textfield',
         '#description' => t('Please enter your starting number.'),
-        '#element_validate' => array('element_validate_number', 'element_validate_range'),
+        '#element_validate' => array('element_validate_number', 'element_validate_kelly'),
         '#required' => TRUE,
     );
 
